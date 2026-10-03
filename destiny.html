@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Magical Destiny Cards</title>
+
+<style>
+body {
+    margin:0;
+    font-family:'Georgia', serif;
+    background: linear-gradient(135deg,#0b0c10,#1f2833,#2c3e50);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding-top:50px;
+    min-height:100vh;
+}
+
+/* Title */
+h1{
+    font-size:40px;
+    letter-spacing:3px;
+    text-shadow:0 0 20px rgba(255,255,255,0.4);
+    margin-bottom:40px;
+}
+
+/* Cards Container */
+.card-container {
+    display:flex;
+    gap:30px;
+    justify-content:center;
+    position:relative;
+    width:90%;
+    transition:all 0.5s;
+}
+
+/* Card styling */
+.card {
+    width:150px;
+    height:220px;
+    perspective:1000px;
+    cursor:pointer;
+    position:relative;
+    transition:all 0.8s ease;
+}
+
+.card-inner {
+    width:100%;
+    height:100%;
+    position:relative;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    border-radius:10px;
+}
+
+.card-front, .card-back {
+    position:absolute;
+    width:100%;
+    height:100%;
+    border-radius:10px;
+    backface-visibility:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-weight:bold;
+    font-size:18px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    transition:all 0.5s;
+}
+
+.card-front {
+    background:linear-gradient(90deg,#5d4037,#3e2723);
+}
+
+.card-back {
+    transform:rotateY(180deg);
+    background-size:cover;
+    background-position:center;
+    border:2px solid gold;
+}
+
+/* Flipped card on left side */
+.card.flipped {
+    position:fixed;
+    top:50%;
+    left:10%;
+    transform:translateY(-50%) scale(1.5);
+    z-index:10;
+}
+
+.card.flipped .card-inner {
+    transform:rotateY(180deg);
+    cursor:default;
+}
+
+/* Text Display */
+.text-display {
+    position:fixed;
+    top:50%;
+    right:10%;
+    transform:translateY(-50%);
+    font-size:22px;
+    color:#ffefc2;
+    text-shadow:0 0 15px hotpink;
+    max-width:35%;
+    display:none;
+}
+
+/* Dim remaining cards */
+.dim {
+    opacity:0;
+    pointer-events:none;
+    transform:scale(0.5);
+}
+
+/* Question Modal */
+#questionModal{
+    display:none;
+    position:fixed;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    background: rgba(10,10,30,0.95);
+    padding:30px 40px;
+    border-radius:15px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(255,255,255,0.2);
+    z-index:20;
+    color:white;
+    font-size:18px;
+    width:350px;
+}
+#questionModal h3{
+    margin-bottom:20px;
+    font-size:22px;
+    color:#ffefc2;
+    text-shadow:0 0 10px hotpink;
+}
+#questionModal button{
+    padding:12px 20px;
+    margin:8px;
+    border:none;
+    background:#ff4d6d;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+    font-weight:bold;
+    transition:0.3s;
+}
+#questionModal button:hover{
+    transform: scale(1.1);
+    background:#ff85a2;
+}
+
+/* Wrong shake */
+.wrong{
+    animation:shake 0.3s 2;
+}
+@keyframes shake{
+    0%{transform:translateX(0);}
+    25%{transform:translateX(-5px);}
+    50%{transform:translateX(5px);}
+    75%{transform:translateX(-5px);}
+    100%{transform:translateX(0);}
+}
+
+/* Control Buttons */
+#controlBtn, #specialBtn {
+    margin-top:20px;
+    padding:14px 35px;
+    border:none;
+    border-radius:25px;
+    cursor:pointer;
+    font-weight:bold;
+    font-size:18px;
+    display:none;
+    transition:0.3s;
+    position:fixed;
+    bottom:20px;
+}
+#controlBtn {
+    background:gold;
+    color:black;
+    right:20px;
+}
+#specialBtn {
+    background:hotpink;
+    color:white;
+    left:20px;
+}
+#controlBtn:hover, #specialBtn:hover{
+    transform:scale(1.05);
+}
+</style>
+</head>
+<body>
+
+<h1>Magical Destiny Cards</h1>
+
+<div class="card-container" id="cards">
+    <div class="card" onclick="askQuestion(this,0)">
+        <div class="card-inner">
+            <div class="card-front">Card 1</div>
+            <div class="card-back"></div>
+        </div>
+    </div>
+    <div class="card" onclick="askQuestion(this,1)">
+        <div class="card-inner">
+            <div class="card-front">Card 2</div>
+            <div class="card-back"></div>
+        </div>
+    </div>
+    <div class="card" onclick="askQuestion(this,2)">
+        <div class="card-inner">
+            <div class="card-front">Card 3</div>
+            <div class="card-back"></div>
+        </div>
+    </div>
+    <div class="card" onclick="askQuestion(this,3)">
+        <div class="card-inner">
+            <div class="card-front">Card 4</div>
+            <div class="card-back"></div>
+        </div>
+    </div>
+</div>
+
+<div class="text-display" id="textDisplay"></div>
+<button id="controlBtn" onclick="backAction()">Back</button>
+<button id="specialBtn" onclick="specialAction()">Come With Me</button>
+
+<!-- Question Modal -->
+<!-- Question Modal -->
+<div id="questionModal">
+    <h3>------</h3>
+    <button class="option-btn">------</button>
+    <button class="option-btn">------</button>
+    <button class="option-btn">------</button>
+    <button class="option-btn">------</button>
+    <p id="errorMsg" style="color:red; margin-top:10px;"></p>
+</div>
+
+
+<script>
+const cardsData=[
+    {question:"manam frst tym kalisinappudu na dress e color?", options:["marron","Violet","blue","pink"], answer:0, photo:"P2.jpeg", message:"First frame frst photo appudu m thelusu nvey na future aypothav ani appatnunchi ikkadidhaka its been 18 years chusthunteyney  chala happyga undhi🫡🫡...."},
+    {question:"mana frst hug eppudu?😁", options:[" 16 feb 2025","17 feb 2025 ","19 feb 2025","18 feb 2025"], answer:2, photo:"p1.jpeg", message:"eppatiki aa vikky midha crush podhu ippati vikky kanna appti vikky midha aa crush podhu i dont know why.....appatiki ippatiki inni godavalina same feeling appudu entha ishtamoo ippudu anthey inch kuda thaggaledhu💕💕"},
+    {question:"Na fvrt Curry Enti?", options:["Fish","chicken bagara","chicken biryani","sambar"], answer:1, photo:"p3.jpeg", message:"aa roju odhilesi poyna dhanikanna nakosam vachav aney feeling baga anpichindhi inka ammavari dayatho strong ga undhi inka strong avvali😘😘"},
+    {question:"naku kopam osthey chesey pani", options:["algadam","arvadam","silent aypovadam","thittdam"], answer:1, photo:"p4.jpeg", message:"ahhh...m cheppali long distance miss you every second in every moment.....alavatipoyav okka roju msg cheyyapoina edho assalu nachani feeling🥰🥰"}
+];
+
+let selectedCard=null;
+let currentCardIndex=null;
+
+function askQuestion(card,index){
+    if(card.classList.contains("flipped")) return;
+    selectedCard = card;
+    currentCardIndex = index;
+
+    const modal = document.getElementById("questionModal");
+    const data = cardsData[index];
+    modal.querySelector("h3").innerText = data.question;
+    const btns = modal.querySelectorAll(".option-btn");
+    btns.forEach((btn,i)=>{
+        btn.innerText = data.options[i];
+        btn.onclick = () => checkAnswer(i === data.answer);
+    });
+    document.getElementById("errorMsg").innerText = "";
+    modal.style.display = "block";
+}
+
+
+function checkAnswer(correct){
+    const modal=document.getElementById("questionModal");
+    if(correct){
+        modal.style.display="none";
+        selectedCard.classList.add("flipped");
+        selectedCard.querySelector(".card-back").style.backgroundImage=`url(${cardsData[currentCardIndex].photo})`;
+
+        // Dim other cards
+        document.querySelectorAll(".card").forEach(c=>{
+            if(c!==selectedCard) c.classList.add("dim");
+        });
+
+        // Show text on right side
+        const textDisplay=document.getElementById("textDisplay");
+        textDisplay.innerText = cardsData[currentCardIndex].message;
+        textDisplay.style.display="block";
+
+        // Control buttons
+        const controlBtn=document.getElementById("controlBtn");
+        const specialBtn=document.getElementById("specialBtn");
+        if(currentCardIndex===3){
+            controlBtn.style.display="none";
+            specialBtn.style.display="block";
+        } else {
+            controlBtn.style.display="block";
+            specialBtn.style.display="none";
+        }
+
+    } else {
+        modal.classList.add("wrong");
+        document.getElementById("errorMsg").innerText="Wrong… try again!";
+        setTimeout(()=>{modal.classList.remove("wrong")},300);
+    }
+}
+
+function backAction(){
+    // Reset cards
+    document.querySelectorAll(".card").forEach(c=>{
+        c.classList.remove("flipped","dim");
+        c.querySelector(".card-back").style.backgroundImage="";
+    });
+    document.getElementById("textDisplay").style.display="none";
+    document.getElementById("controlBtn").style.display="none";
+    document.getElementById("specialBtn").style.display="none";
+}
+
+function specialAction(){
+    window.location.href = "love.html";
+}
+</script>
+
+</body>
+</html>

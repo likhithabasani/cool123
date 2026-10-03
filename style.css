@@ -1,0 +1,94 @@
+/* Animated Gradient Background */
+.page1 {
+    background: linear-gradient(-45deg, #4b0082, #8a2be2, #ff1493, #ff69b4);
+    background-size: 400% 400%;
+    animation: gradientBG 8s ease infinite;
+    color: white;
+    overflow: hidden;
+    text-align: center;
+}
+
+/* Gradient Animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Title Animation */
+.title {
+    font-size: 28px;
+    animation: fadeUp 2s ease;
+}
+
+.subtitle {
+    font-size: 16px;
+    margin-top: 10px;
+    animation: fadeUp 3s ease;
+}
+
+/* Button Styling */
+.magic-btn {
+    padding: 14px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 25px;
+    background: white;
+    color: #ff1493;
+    font-weight: bold;
+    box-shadow: 0 0 15px white;
+    transition: all 0.3s ease;
+}
+
+.magic-btn:hover {
+    transform: scale(1.15);
+    box-shadow: 0 0 25px white;
+}
+
+/* Floating Animation */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Floating Hearts */
+.hearts::before,
+.hearts::after {
+    content: "💖 💕 💗 💘 💝";
+    position: absolute;
+    font-size: 24px;
+    animation: floatHearts 10s linear infinite;
+    white-space: nowrap;
+}
+
+.hearts::after {
+    animation-delay: 5s;
+}
+
+@keyframes floatHearts {
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
+    }
+    20% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-10vh);
+        opacity: 0;
+    }
+}
+#hiddenText{
+    margin-top:30px;
+    font-size:22px;
+    display:none;
+
+}

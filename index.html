@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enter Secret 💖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { display:flex; justify-content:center; align-items:center; height:100vh; font-family:sans-serif; background: #ff9a9e; }
+        .login { text-align:center; }
+        input { padding:10px; font-size:16px; border-radius:5px; border:none; }
+        button { padding:10px 20px; margin-left:10px; border:none; border-radius:5px; cursor:pointer; background:#ff4d6d; color:white; font-weight:bold; }
+    </style>
+</head>
+<body>
+    <div class="login">
+        <h2>Enter Password to See Site 💖</h2>
+        <input type="password" id="pwd" placeholder="Type password here">
+        <button onclick="checkPwd()">Go</button>
+    </div>
+
+    <script>
+        function checkPwd() {
+            const pass = document.getElementById('pwd').value;
+            if(pass === 'Vishitha') { // <-- set your password here
+                window.location.href = 'main.html'; // your actual site
+            } else {
+                alert('Incorrect password 😢');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thank You 💖</title>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(120deg, #ff9a9e, #fad0c4, #ffdde1, #ff9a9e);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: white;
+  text-align: center;
+}
+
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.fullscreen-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.7);
+}
+
+.message-box {
+  position: relative;
+  padding: 20px 40px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 50px rgba(255,105,180,0.5);
+  animation: fadeIn 2s ease forwards;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+}
+
+p {
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0; transform: scale(0.9);}
+  100% {opacity: 1; transform: scale(1);}
+}
+</style>
+</head>
+<body>
+
+<!-- Fullscreen background image -->
+<img src="family_photo.jpg" alt="Family Photo" class="fullscreen-img">
+
+<!-- Message box -->
+<div class="message-box">
+  <h1>Thank You 💖</h1>
+  <p>I love youu forever Bava happy valentines day 💌</p>
+</div>
+
+</body>
+</html>

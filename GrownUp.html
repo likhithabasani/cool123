@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Man You Became 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+/* ===== Body & Page ===== */
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #1e1e2f, #3a0ca3, #7209b7);
+    color: white;
+}
+
+/* ===== Card ===== */
+.card {
+    backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 0 40px rgba(255, 0, 200, 0.4);
+    animation: fadeIn 2s ease-in-out;
+    margin: 40px auto;
+}
+
+/* ===== Title ===== */
+h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* ===== Buttons ===== */
+button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    background: linear-gradient(45deg, #ff006e, #ff4d6d);
+    color: white;
+    transition: 0.4s;
+    box-shadow: 0 0 20px #ff006e;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 35px #ff4d6d;
+}
+
+/* ===== Hidden Content ===== */
+#content {
+    display: none;
+    margin-top: 25px;
+    animation: slideUp 1.5s ease forwards;
+}
+
+/* ===== Image ===== */
+img {
+    width: 260px;
+    border-radius: 20px;
+    margin-top: 20px;
+    box-shadow: 0 0 30px rgba(255,255,255,0.4);
+    transition: 0.5s;
+}
+
+img:hover {
+    transform: scale(1.05);
+}
+
+/* ===== Text ===== */
+.text {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.6;
+    min-height: 80px;
+    white-space: pre-wrap; /* preserves line breaks */
+}
+
+/* ===== Floating Hearts ===== */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    color: #ff4d6d;
+    font-size: 20px;
+    animation: floatUp 8s linear infinite;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* ===== Animations ===== */
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100vh);
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h1>Wait… Something Changed ❤️</h1>
+
+    <button onclick="reveal()">Click Slowly 💌</button>
+
+    <div id="content">
+        <img src="S.jpeg" alt="Him">
+
+        <div class="text" id="typing"></div>
+
+        <button onclick="nextPage()">Next Surprise ➜</button>
+    </div>
+</div>
+
+<script>
+/* ===== Show Content & Start Typing ===== */
+function reveal() {
+    document.getElementById("content").style.display = "block";
+    typeText();
+}
+
+/* ===== Next Page ===== */
+function nextPage() {
+    window.location.href = "destiny.html"; // change as needed
+}
+
+/* ===== Typewriter Text ===== */
+const message = `Intha chill nunchi oka matured man now holding all responsibities...one thing cheppalantey I am proud of u...
+
+amma nannala kashtanni cheap ga thesesi nveym pettinav paisal iyyi business pettukunta ani torcher chesey rojullo u stood strong for ur family and  mavayya respect mi family respect in society....mavayya kosam ni family kosam chala gattiga nilabddav kashtapaddav entha antey mavayya ee expect cheyyanantha I know iyanni chetshu nv chala naligipoyav but athammaki mavayyaki akkaki ur r the Torch berer & heroo..chesi undochu chinna chinna mistakes trading atla but kachithanga vati nunchi nv nerchukuntav aa nammakam naku undhi.and thanks na selection perfect ani prove chesinandhuku u deserve all happiness .....
+
+You are the strongest, responsible, and inspiring man I admire every single day. ❤️
+
+Watching you grow makes me fall for you deeper…inka padipothunna My Heroo😎😎`;
+
+let i = 0;
+function typeText() {
+    if (i < message.length) {
+        document.getElementById("typing").innerHTML += message.charAt(i);
+        i++;
+        setTimeout(typeText, 40);
+    }
+}
+
+/* ===== Floating Hearts ===== */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 10) + "px";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 8000);
+}, 500);
+</script>
+
+</body>
+</html>

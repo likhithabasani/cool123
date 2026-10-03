@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crazy Funny Love 😂💖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Comic Sans MS', cursive;
+            overflow: hidden;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            animation: bgMove 6s infinite alternate;
+        }
+
+        @keyframes bgMove {
+            0% { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+            100% { background: linear-gradient(45deg, #a18cd1, #fbc2eb); }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            color: white;
+            text-shadow: 0 0 10px hotpink;
+        }
+
+        img {
+            width: 300px;
+            align-items: center;
+            height: 340px;
+            object-fit: cover;
+            border-radius: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 20px hotpink;
+            display: none; /* hidden initially */
+            transition: 0.4s ease;
+        }
+
+        p {
+            color: white;
+            font-weight: bold;
+            margin-top: 15px;
+            display: none;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 14px 28px;
+            font-size: 16px;
+            border: none;
+            border-radius: 25px;
+            background: linear-gradient(45deg, #ff4d6d, #ff85a2);
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 15px hotpink;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+        #caption {
+    display: block;               /* ensures caption is block */
+    text-align: center;           /* center text under image */
+    color: #ffeded;               /* caption color */
+    font-weight: bold;            /* bold text */
+    font-size: 24px;              /* adjust size */
+    margin-top: 15px;             /* spacing from image */
+    font-family: 'Comic Sans MS', cursive; /* fun font */
+    text-shadow: 0 0 5px #ea0831; /* glow effect */
+}
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>OK...... chudaniki readyy AAAaa? 😏😂</h1>
+
+    <button id="viewBtn" onclick="showFirst()">Ready Chupiy 👀</button>
+
+    <img id="funnyImage" src="" alt="Funny Photo">
+
+    <p id="caption"></p>
+
+    <button id="nextBtn" onclick="nextPhoto()" style="display:none;">
+        Inkoti ippudu manchidhi 😌🔥click chey
+    </button>
+</div>
+
+<script>
+
+    const photos = [
+        "photo1.jpeg",
+        "photo2.jpg",
+        "photo3.jpeg",
+        "photo4.jpeg",
+        "photo5.jpeg",
+        "photo6.jpeg",
+        "photo7.jpeg",
+    ];
+
+    const captions = [
+        "Andhagadu...Manmadhudu....herooo😎 pink color shirtloo 😭😂",
+        "Snacks Thintunna navaratnam😏",
+        "Kandala raja--katraja....(kandalaaa veeruduuuu💪💪💪) 💕",
+        "vachadu vachadu paste add la herooooooo😎😎 ",
+        "Inthamundhu thappu cheppa😌 Brush add la herooooo🫡🫡",
+        "Ammayla manasu dochesey international dongaa mawa nvu😭",
+        "iii photo chedam ani reel save chesav neney chesesaa(vannala 's legacy') 🏆😂",
+        "inka cheppalaaa? comedy king nuvvu 😂🔥",
+        "Sare sare... ippudu serious avudham 😌"
+    ];
+
+    let index = 0;
+
+    function showFirst() {
+        document.getElementById("funnyImage").style.display = "block";
+        document.getElementById("caption").style.display = "block";
+        document.getElementById("nextBtn").style.display = "inline-block";
+        document.getElementById("viewBtn").style.display = "none";
+
+        document.getElementById("funnyImage").src = photos[index];
+        document.getElementById("caption").innerText = captions[index];
+    }
+
+    function nextPhoto() {
+        index++;
+
+        if (index < photos.length) {
+            document.getElementById("funnyImage").src = photos[index];
+            document.getElementById("caption").innerText = captions[index];
+        } else {
+            // Hide next button
+            document.getElementById("nextBtn").style.display = "none";
+
+            // Create dramatic transition button
+            const grownBtn = document.createElement("button");
+            grownBtn.innerText = "Okay okay… enough comedy 😌🔥 Click to see REAL MAN ➜";
+            grownBtn.style.marginTop = "25px";
+            grownBtn.onclick = function() {
+                window.location.href = "grownup.html";
+            };
+
+            document.querySelector(".container").appendChild(grownBtn);
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
